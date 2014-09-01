@@ -1,5 +1,6 @@
 #include <stdio.h>                          /* Sobel.c */
 #include <math.h>
+#include <stdlib.h>
 
         int pic[256][256];
         int outpicx[256][256];
@@ -12,23 +13,32 @@ main(argc,argv)
 int argc;
 char **argv;
 {
-        int i,j,p,q,mr,sum1,sum2;
-        double threshold;
-        FILE *fo1, *fo2, *fp1, *fopen();
-        char *foobar;
+  int i,j,p,q,mr,sum1,sum2;
+  double threshold;
+  FILE *fo1, *fo2, *fo3, *fp1, *fopen();
+  char *foobar;
 
-        argc--; argv++;
-        foobar = *argv;
-        fp1=fopen(foobar,"rb");
+  // First Argument: Input File (face05.pgm)
+  argc--; argv++;
+  foobar = *argv;
+  fp1=fopen(foobar,"rb");
 
+  // Second Argument: Output File (output.pgm)
 	argc--; argv++;
 	foobar = *argv;
 	fo1=fopen(foobar,"wb");
 
-
-        argc--; argv++;
+  // Third Argument: Threshold value
+  // This value will act as the center threshold value.
+  // The low and high threshold values will be relative to this value,
+  // where low will be -50% and high will be +50%
+  argc--; argv++;
 	foobar = *argv;
 	threshold = atof(foobar);
+
+  // Creates the two (low & high) threshold output images
+  fo2=fopen("lowthr.pgm", "wb");
+  fo3=fopen("highthr.pgm", "wb");
 
         for (i=0;i<256;i++)
         { for (j=0;j<256;j++)
@@ -38,7 +48,6 @@ char **argv;
                 }
         }
 
-        // Gets the X and Y [Convolution math]
         mr = 1;
         for (i=mr;i<256-mr;i++)
         { for (j=mr;j<256-mr;j++)
@@ -58,20 +67,24 @@ char **argv;
           }
         }
 
-        // Takes the magnitude form the previous matrix, gets the sqrt, etc
         maxival = 0;
         for (i=mr;i<256-mr;i++)
         { for (j=mr;j<256-mr;j++)
           {
              ival[i][j]=sqrt((double)((outpicx[i][j]*outpicx[i][j]) +
                                       (outpicy[i][j]*outpicy[i][j])));
-             if (ival[i][j] > maxival)
+
+             if (ival[i][j] > maxival){
                 maxival = ival[i][j];
+
+            }
 
            }
         }
 
-        // Displacement
+        //Added File header to magnitude output file
+        fprintf(fo1, "P5\n256 256\n255\n");
+
         for (i=0;i<256;i++)
           { for (j=0;j<256;j++)
             {
@@ -81,6 +94,31 @@ char **argv;
             }
           }
 
-          // Threshold code goes here
+        // File headers for the low and high thresholded images
+        fprintf(fo2, "P5\n256 256\n255\n");
+        fprintf(fo3, "P5\n256 256\n255\n");
+
+        // This is what specifies the low & high thresholds.
+        // low = 50% lower than middle threshold which was entered
+          // as an argument
+        // high = 50% higher than the entered threshold
+        double lowthr = threshold - (threshold * .5);
+        double highthr = threshold + (threshold * .5);
+
+        for(i=0; i<256; i++){
+          for(j=0; j<256; j++){
+            //Low Threshold
+            if(ival[i][j] > lowthr)
+              fprintf(fo2, "%c", 255);
+            else
+              fprintf(fo2, "%c", 0);
+            //High Threshold
+            if(ival[i][j] > highthr)
+              fprintf(fo3, "%c", 255);
+            else
+              fprintf(fo3, "%c", 0);
+          }
+        }
+
 
 }
