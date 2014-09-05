@@ -14,7 +14,7 @@ int argc;
 char **argv;
 {
   int i,j,p,q,mr,sum1,sum2;
-  double threshold;
+  double threshold, threshold2;
   FILE *fo1, *fo2, *fo3, *fp1, *fopen();
   char *foobar;
 
@@ -35,6 +35,11 @@ char **argv;
   argc--; argv++;
 	foobar = *argv;
 	threshold = atof(foobar);
+
+  argc--; argv++;
+	foobar = *argv;
+	threshold2 = atof(foobar);
+
 
   // Creates the two (low & high) threshold output images
   fo2=fopen("lowthr.pgm", "wb");
@@ -102,18 +107,16 @@ char **argv;
         // low = 50% lower than middle threshold which was entered
           // as an argument
         // high = 50% higher than the entered threshold
-        double lowthr = threshold - (threshold * .5);
-        double highthr = threshold + (threshold * .5);
 
         for(i=0; i<256; i++){
           for(j=0; j<256; j++){
             //Low Threshold
-            if(ival[i][j] > lowthr)
+            if(ival[i][j] > threshold)
               fprintf(fo2, "%c", 255);
             else
               fprintf(fo2, "%c", 0);
             //High Threshold
-            if(ival[i][j] > highthr)
+            if(ival[i][j] > threshold2)
               fprintf(fo3, "%c", 255);
             else
               fprintf(fo3, "%c", 0);
