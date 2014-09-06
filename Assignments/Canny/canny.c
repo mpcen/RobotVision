@@ -67,7 +67,6 @@ char **argv;
           for (j=0;j<256;j++)
           {
             pic[i][j]  =  getc (fp1);
-
           }
         }
 
