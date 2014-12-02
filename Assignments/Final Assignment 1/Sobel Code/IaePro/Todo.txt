@@ -1,0 +1,43 @@
+
+===============================
+      D e f i n i t e
+===============================
+
+(Roughly in ordered by priority)
+
+- Complete custom convolution functionality.
+- Canny Edge Detection.
+- Much improved FFT support:
+	- IFFT.
+	- Frequency-domain filters.
+	- Allow larger areas to be viewed.
+	- Allow viewing of both phase and magnitude data.
+	- Allow quadrant shifting.
+- Improve Histogram dialog:
+	- Display histogram values.
+	- Also selection of histogram w/stats.
+	- Allow Y-scale of histogram to be changed.
+	- Export histogram to text.
+- Much more advanced thresholding.
+	- Two-point thresholding.
+	- Not just binary.
+- Histogram equalization.
+- Gaussian noise.
+- Paste images into IaePro.
+- Implement and improve the old prototyping filter.
+- Improve the skin detection filter.
+
+===============================
+      P e r h a p s . . . 
+===============================
+
+(No order)
+
+- Much improved FFT support:
+	- Add windowing.
+- Proper print/print preview. (?)
+- Allow saving to other formats (?)
+- Custom edge detection.
+- Custom noise.
+- Morphological filters.
+- Automation support.

@@ -1,0 +1,11 @@
+#
+# Mean filter with a 5x5 Neighbourhood
+#
+
+5
+1 1 1 1 1 
+1 1 1 1 1 
+1 1 1 1 1 
+1 1 1 1 1 
+1 1 1 1 1
+25

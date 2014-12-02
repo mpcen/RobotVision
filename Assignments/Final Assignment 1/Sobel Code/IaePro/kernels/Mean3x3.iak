@@ -1,0 +1,9 @@
+#
+# Mean filter with a 3x3 Neighbourhood
+#
+
+3
+1 1 1
+1 1 1
+1 1 1
+9

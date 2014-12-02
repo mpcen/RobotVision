@@ -1,0 +1,41 @@
+// IaePro.odl : type library source for IaePro.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (IaePro.tlb).
+
+[ uuid(B6281B03-11DB-11D6-887A-00304F10C7F8), version(1.0) ]
+library IaePro
+{
+	importlib("stdole32.tlb");
+	
+
+	//  Primary dispatch interface for CIaeProDoc
+	
+	[ uuid(B6281B04-11DB-11D6-887A-00304F10C7F8) ]
+	dispinterface IIaePro
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CIaeProDoc)
+			//}}AFX_ODL_PROP
+			
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CIaeProDoc)
+			//}}AFX_ODL_METHOD
+
+	};
+
+	//  Class information for CIaeProDoc
+	
+	[ uuid(B6281B02-11DB-11D6-887A-00304F10C7F8) ]
+	coclass Document
+	{
+		[default] dispinterface IIaePro;
+	};
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

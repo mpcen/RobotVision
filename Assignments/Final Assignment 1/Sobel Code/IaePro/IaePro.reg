@@ -1,0 +1,13 @@
+REGEDIT
+; This .REG file may be used by your SETUP program.
+;   If a SETUP program is not available, the entries below will be
+;   registered in your InitInstance automatically with a call to
+;   CWinApp::RegisterShellFileTypes and COleObjectFactory::UpdateRegistryAll.
+
+
+HKEY_CLASSES_ROOT\IaePro.Document = IaePro Document
+HKEY_CLASSES_ROOT\IaePro.Document\CLSID = {B6281B02-11DB-11D6-887A-00304F10C7F8}
+
+HKEY_CLASSES_ROOT\CLSID\{B6281B02-11DB-11D6-887A-00304F10C7F8} = IaePro Document
+HKEY_CLASSES_ROOT\CLSID\{B6281B02-11DB-11D6-887A-00304F10C7F8}\ProgId = IaePro.Document
+HKEY_CLASSES_ROOT\CLSID\{B6281B02-11DB-11D6-887A-00304F10C7F8}\LocalServer32 = IAEPRO.EXE

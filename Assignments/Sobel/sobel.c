@@ -45,13 +45,15 @@ char **argv;
   fo2=fopen("lowthr.pgm", "wb");
   fo3=fopen("highthr.pgm", "wb");
 
-        for (i=0;i<256;i++)
-        { for (j=0;j<256;j++)
-                {
-                  pic[i][j]  =  getc (fp1);
-                  pic[i][j]  &= 0377;
-                }
-        }
+  // Get and store image
+  for (i=0;i<256;i++)
+  {
+    for (j=0;j<256;j++)
+    {
+      pic[i][j]  =  getc (fp1);
+      pic[i][j]  &= 0377;
+    }
+  }
 
         mr = 1;
         for (i=mr;i<256-mr;i++)
